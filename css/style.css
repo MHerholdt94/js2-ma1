@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ddd;
+    margin: auto;
+    padding: 30px;
+    max-width: 1210px;
+    color: #232323;
+}
+
+nav {
+    font-weight: bold;
+}
+
+nav a {
+    text-decoration: none;
+    color: #232323;
+}
+
+nav .active, nav a:hover {
+    color: darkslateblue;
+}
+
+.input-container {
+    background-color: #fff;
+    margin: .5em 0;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.input-container i {
+    background-color: #c4c4c4;
+    border-radius: 5px 0 0 5px;
+    padding: 9px;
+}
+
+.input-container input {
+    background-color: transparent;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+
+.input-container input::-webkit-outer-spin-button,
+.input-container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.product {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0 1em;
+    width: 270px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product div button {
+    padding: .5em .75em;
+    border: none;
+    background-color: darkslateblue;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.product div button:hover {
+    cursor: pointer;
+    color: darkslateblue;
+    background-color: #fff;
+    border: 2px solid darkslateblue;
+}
+
+.loading {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    top: 100px;
+    margin: auto;
+}
+
+.loading:after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 8px solid #333;
+    border-color: #333 #33333325 #333 #33333325;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.message.error {
+    background-color: #ff2b2b97;
+    border: 1px solid #aa0000;
+    color: white;
+    padding: .5em;
+}
