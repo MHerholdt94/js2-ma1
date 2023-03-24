@@ -1,14 +1,30 @@
+:root {
+    --background-color: #ddd;
+    --text-color: #232323;
+    --grey: #c4c4c4;
+    --dark-grey: #333;
+    --dark-grey-t: #33333325;
+    --shadow: 0 2px #777;
+    --dark-slateblue: #483d8b;
+    --darker-slateblue: #312775;
+    --darkest-slateblue: #231b54;
+    --dark-red: #8b0000;
+    --dark-red-t: #8b000095;
+    --darker-red: #700000;
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #ddd;
+    max-width: 1210px;
     margin: auto;
     padding: 30px;
-    max-width: 1210px;
-    color: #232323;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 nav {
@@ -17,15 +33,15 @@ nav {
 
 nav a {
     text-decoration: none;
-    color: #232323;
+    color: var(--text-color);
 }
 
 nav .active, nav a:hover {
-    color: darkslateblue;
+    color: var(--dark-slateblue);
 }
 
 .input-container {
-    background-color: #fff;
+    background-color: white;
     margin: .5em 0;
     width: 150px;
     display: flex;
@@ -34,7 +50,7 @@ nav .active, nav a:hover {
 }
 
 .input-container i {
-    background-color: #c4c4c4;
+    background-color: var(--grey);
     border-radius: 5px 0 0 5px;
     padding: 9px;
 }
@@ -61,38 +77,101 @@ nav .active, nav a:hover {
 }
 
 .product {
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 0 1em;
-    width: 270px;
-    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 5px;
+    background-color: white;
+    padding: 0 1em;
+    width: 270px;
+    height: 200px;
 }
 
 .product div {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1em;
 }
 
-.product div button {
-    padding: .5em .75em;
+.default-btn {
+    padding: 8px 20%;
+    width: 160px;
     border: none;
-    background-color: darkslateblue;
-    border: 2px solid #fff;
     border-radius: 5px;
-    font-weight: bold;
-    color: #fff;
+    color: white;
     text-transform: uppercase;
+    transition: .1s;
 }
 
-.product div button:hover {
+.add-btn {
+    background-color: var(--dark-slateblue);
+    box-shadow: var(--shadow);
+}
+
+.added-btn {
+    background-color: var(--darkest-slateblue);
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.remove-btn {
+    background-color: var(--dark-red);
+    padding: 8px 22%;
+    width: 160px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: var(--shadow);
+    transition: .1s;
+}
+
+.add-btn:after, .added-btn:after, .remove-btn:after {
+    opacity: 0;
+    margin-left: 18px;
+    transition: .1s;
+    pointer-events: none;
+}
+
+.remove-btn:after {
+    content: "\2718";
+}
+
+.add-btn:after, .added-btn:after {
+    content: "\2714";
+}
+
+.added-btn:after {
+    opacity: 1;
+}
+
+.product button:hover {
     cursor: pointer;
-    color: darkslateblue;
-    background-color: #fff;
-    border: 2px solid darkslateblue;
+}
+
+.add-btn:hover {
+    background-color: var(--darker-slateblue);
+}
+
+.remove-btn:hover {
+    background-color: var(--darker-red);
+}
+
+.remove-btn:hover:after {
+    opacity: 1;
+}
+
+.add-btn:active {
+    background-color: var(--darker-slateblue);
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.remove-btn:active {
+    background-color: var(--darker-red);
+    box-shadow: none;
+    transform: translateY(2px);
 }
 
 .loading {
@@ -111,8 +190,8 @@ nav .active, nav a:hover {
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 8px solid #333;
-    border-color: #333 #33333325 #333 #33333325;
+    border: 8px solid var(--dark-grey);
+    border-color: var(--dark-grey) var(--dark-grey-t) var(--dark-grey) var(--dark-grey-t);
     animation: spin 1.2s linear infinite;
 }
 
@@ -126,8 +205,17 @@ nav .active, nav a:hover {
 }
 
 .message.error {
-    background-color: #ff2b2b97;
-    border: 1px solid #aa0000;
-    color: white;
+    background-color: var(--dark-red-t);
+    border: 1px solid var(--dark-red);
+    color: #fff;
     padding: .5em;
+}
+
+.message.empty-wishlist {
+    text-align: center;
+    margin: 5em auto;
+}
+
+.message.empty-wishlist p {
+    font-size: 2em;
 }
