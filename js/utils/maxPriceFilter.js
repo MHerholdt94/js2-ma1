@@ -1,27 +1,33 @@
 import { renderProducts } from "./renderProducts.js";
 import { displayMessage } from "../constants/messages.js";
 
-export function maxPriceFilter(products) {
-  const filter = document.querySelector(".filter");
-  const productsContainer = document.querySelector(".products");
+export function maxPriceFilter(products, target) {
+  const element = document.querySelector(target);
 
-  filter.onkeyup = function (event) {
+  function filterProducts() {
     const filterValue = event.target.value;
 
-    const filteredProducts = products.filter(function (product) {
-      if (product.price <= filterValue || filterValue.length === 0) {
+    const filteredProducts = products.filter(function (item) {
+      if (item.price <= filterValue || filterValue.length === 0) {
         return true;
       }
     });
 
-    renderProducts(filteredProducts);
+    renderProducts(filteredProducts, target);
 
-    if (productsContainer.children.length === 0) {
+    if (filterValue.length === 0) {
+      renderProducts(products, target);
+    }
+
+    if (element.children.length === 0) {
       displayMessage(
         "error",
         `No products with a maximum value of £${filterValue} found, please try a higher value`,
-        ".products"
+        target
       );
     }
-  };
+  }
+  const filter = document.querySelector(".filter");
+
+  filter.addEventListener("keyup", filterProducts);
 }

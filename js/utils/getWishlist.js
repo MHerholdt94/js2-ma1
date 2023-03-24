@@ -1,9 +1,11 @@
-export function getWishlist() {
-  const items = localStorage.getItem("wishlist");
+import { WISHLIST_KEY } from "../constants/settings.js";
 
-  if (items === null) {
+export function getWishlist() {
+  const list = localStorage.getItem(WISHLIST_KEY);
+
+  if (list === null) {
     return [];
   } else {
-    return JSON.parse(items);
+    return JSON.parse(list);
   }
 }

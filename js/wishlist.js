@@ -1,5 +1,6 @@
 import { getWishlist } from "./utils/getWishlist.js";
 import { displayMessage } from "./constants/messages.js";
+import { removeClick } from "./utils/clickEvents.js";
 
 const wishlist = getWishlist();
 
@@ -30,34 +31,3 @@ const removeButtons = document.querySelectorAll(".remove-btn");
 removeButtons.forEach((btn) => {
   btn.addEventListener("click", removeClick);
 });
-
-function removeClick() {
-  this.parentElement.parentElement.style.display = "none";
-
-  const id = this.dataset.id;
-  const currentWishlist = getWishlist();
-  const productExists = currentWishlist.find(function (item) {
-    return item.id === id;
-  });
-
-  if (productExists === undefined) {
-    const product = { id: id };
-    currentWishlist.pop(product);
-    saveWishlist(currentWishlist);
-  } else {
-    const newWishlist = currentWishlist.filter((item) => item.id !== id);
-    saveWishlist(newWishlist);
-  }
-}
-
-function saveWishlist(items) {
-  localStorage.setItem("wishlist", JSON.stringify(items));
-
-  if (items.length === 0) {
-    displayMessage(
-      "empty-wishlist",
-      "<p>:(</p>You have nothing added to your wishlist yet",
-      ".products"
-    );
-  }
-}
